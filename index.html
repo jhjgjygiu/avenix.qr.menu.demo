@@ -1,148 +1,420 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>AVENIX Restaurant | QR Menu</title>
+<title>NOVA BURGER | Digital Menu</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  scroll-behavior:smooth;
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #0b0b0d;
-      color: white;
-    }
+body{
+  font-family:Arial,sans-serif;
+  background:#090b0f;
+  color:#fff;
+  line-height:1.6;
+}
 
-    header {
-      text-align: center;
-      padding: 45px 20px;
-      background: linear-gradient(135deg, #050505, #071b38);
-    }
+.hero{
+  min-height:320px;
+  padding:55px 20px 35px;
+  text-align:center;
+  background:
+    radial-gradient(circle at top,#123e72 0%,#0b1727 35%,#090b0f 70%);
+}
 
-    header h1 {
-      font-size: 34px;
-      color: #ffffff;
-    }
+.logo{
+  width:82px;
+  height:82px;
+  margin:auto;
+  border-radius:22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  font-weight:bold;
+  background:linear-gradient(135deg,#168bff,#00c2ff);
+  box-shadow:0 10px 35px rgba(22,139,255,.25);
+}
 
-    header p {
-      margin-top: 10px;
-      color: #a9b3c1;
-    }
+.hero h1{
+  margin-top:18px;
+  font-size:32px;
+  letter-spacing:1px;
+}
 
-    .menu {
-      max-width: 700px;
-      margin: auto;
-      padding: 25px 18px 50px;
-    }
+.hero p{
+  margin-top:7px;
+  color:#aab4c2;
+}
 
-    .section-title {
-      color: #168bff;
-      font-size: 25px;
-      margin: 30px 0 15px;
-      border-bottom: 1px solid #242b35;
-      padding-bottom: 10px;
-    }
+.status{
+  display:inline-block;
+  margin-top:15px;
+  padding:7px 14px;
+  border-radius:50px;
+  background:#10251b;
+  color:#5ee59b;
+  font-size:13px;
+}
 
-    .item {
-      background: #15171b;
-      border: 1px solid #242830;
-      border-radius: 15px;
-      padding: 18px;
-      margin-bottom: 12px;
-    }
+.categories{
+  position:sticky;
+  top:0;
+  z-index:10;
+  display:flex;
+  gap:9px;
+  overflow-x:auto;
+  padding:14px 16px;
+  background:rgba(9,11,15,.95);
+  border-bottom:1px solid #1d222b;
+}
 
-    .item-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-    }
+.categories a{
+  flex:none;
+  text-decoration:none;
+  color:#d7dce3;
+  background:#151922;
+  border:1px solid #242b36;
+  padding:9px 15px;
+  border-radius:50px;
+  font-size:14px;
+}
 
-    .item h3 {
-      font-size: 19px;
-    }
+.categories a:hover{
+  background:#168bff;
+  color:white;
+}
 
-    .price {
-      color: #20a0ff;
-      font-weight: bold;
-      white-space: nowrap;
-    }
+.container{
+  max-width:760px;
+  margin:auto;
+  padding:12px 17px 45px;
+}
 
-    .item p {
-      color: #9da5b0;
-      margin-top: 8px;
-      line-height: 1.6;
-      font-size: 14px;
-    }
+.offer{
+  margin:18px 0 30px;
+  padding:20px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#126bd1,#00a9ff);
+  box-shadow:0 10px 30px rgba(0,132,255,.15);
+}
 
-    footer {
-      text-align: center;
-      color: #68717d;
-      padding: 25px;
-      font-size: 13px;
-    }
-  </style>
+.offer small{
+  opacity:.8;
+}
+
+.offer h2{
+  margin:4px 0;
+  font-size:21px;
+}
+
+.section{
+  scroll-margin-top:85px;
+  margin-top:34px;
+}
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.section-title h2{
+  font-size:23px;
+}
+
+.section-title span{
+  color:#168bff;
+  font-size:13px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  padding:18px;
+  margin-bottom:12px;
+  background:#13171e;
+  border:1px solid #202630;
+  border-radius:18px;
+  transition:.2s;
+}
+
+.item:hover{
+  transform:translateY(-2px);
+  border-color:#168bff;
+}
+
+.item-info{
+  flex:1;
+}
+
+.item h3{
+  font-size:18px;
+  margin-bottom:5px;
+}
+
+.item p{
+  color:#929dab;
+  font-size:14px;
+}
+
+.price{
+  color:#23a7ff;
+  font-weight:bold;
+  white-space:nowrap;
+  font-size:16px;
+}
+
+.popular{
+  display:inline-block;
+  margin-top:8px;
+  padding:3px 9px;
+  border-radius:20px;
+  background:#302710;
+  color:#ffc94a;
+  font-size:11px;
+}
+
+.info-box{
+  margin-top:38px;
+  padding:22px;
+  border-radius:20px;
+  background:#11151b;
+  border:1px solid #202630;
+}
+
+.info-box h2{
+  margin-bottom:13px;
+}
+
+.info-row{
+  margin:8px 0;
+  color:#aeb6c1;
+}
+
+.buttons{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:18px;
+}
+
+.btn{
+  text-align:center;
+  text-decoration:none;
+  padding:12px;
+  border-radius:12px;
+  font-weight:bold;
+}
+
+.whatsapp{
+  background:#25D366;
+  color:#07140c;
+}
+
+.instagram{
+  background:#168bff;
+  color:white;
+}
+
+footer{
+  text-align:center;
+  padding:30px 15px 40px;
+  color:#687382;
+  font-size:13px;
+}
+
+footer strong{
+  color:#168bff;
+}
+
+@media(max-width:500px){
+  .hero h1{
+    font-size:28px;
+  }
+
+  .buttons{
+    grid-template-columns:1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <h1>AVENIX Restaurant</h1>
-    <p>أهلاً وسهلاً 👋 اختر وجبتك المفضلة</p>
-  </header>
+<header class="hero">
+  <div class="logo">N</div>
 
-  <main class="menu">
+  <h1>NOVA BURGER</h1>
 
-    <h2 class="section-title">🍔 البرغر</h2>
+  <p>برغر طازج • نكهة مختلفة 🍔</p>
 
-    <div class="item">
-      <div class="item-top">
-        <h3>كلاسيك برغر</h3>
-        <span class="price">3.50 د.أ</span>
-      </div>
-      <p>قطعة لحم، جبنة، خس، طماطم وصوص المطعم الخاص.</p>
+  <div class="status">● مفتوح الآن</div>
+</header>
+
+<nav class="categories">
+  <a href="#burgers">🍔 البرغر</a>
+  <a href="#meals">🔥 الوجبات</a>
+  <a href="#sides">🍟 الإضافات</a>
+  <a href="#drinks">🥤 المشروبات</a>
+</nav>
+
+<main class="container">
+
+  <div class="offer">
+    <small>عرض اليوم 🔥</small>
+    <h2>NOVA Combo</h2>
+    <p>برغر + بطاطا + مشروب بـ 5.50 د.أ فقط</p>
+  </div>
+
+
+  <section class="section" id="burgers">
+
+    <div class="section-title">
+      <h2>🍔 البرغر</h2>
+      <span>الأكثر طلباً</span>
     </div>
 
     <div class="item">
-      <div class="item-top">
-        <h3>دبل برغر</h3>
-        <span class="price">5.00 د.أ</span>
+      <div class="item-info">
+        <h3>NOVA Classic</h3>
+        <p>لحم مشوي، جبنة، خس، مخلل وصوص NOVA الخاص.</p>
+        <span class="popular">⭐ الأكثر مبيعاً</span>
       </div>
-      <p>قطعتان لحم، جبنة مضاعفة وصوص خاص.</p>
+      <div class="price">3.50 د.أ</div>
     </div>
 
-
-    <h2 class="section-title">🍟 الإضافات</h2>
+    <div class="item">
+      <div class="item-info">
+        <h3>Double Smash</h3>
+        <p>قطعتان لحم، جبنة مضاعفة، بصل وصوص خاص.</p>
+      </div>
+      <div class="price">5.00 د.أ</div>
+    </div>
 
     <div class="item">
-      <div class="item-top">
+      <div class="item-info">
+        <h3>Spicy Chicken</h3>
+        <p>دجاج مقرمش حار، خس ومخلل مع صوص سبايسي.</p>
+      </div>
+      <div class="price">3.75 د.أ</div>
+    </div>
+
+  </section>
+
+
+  <section class="section" id="meals">
+
+    <div class="section-title">
+      <h2>🔥 الوجبات</h2>
+      <span>وفر أكثر</span>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <h3>Classic Meal</h3>
+        <p>NOVA Classic مع بطاطا ومشروب.</p>
+      </div>
+      <div class="price">5.25 د.أ</div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <h3>Double Meal</h3>
+        <p>Double Smash مع بطاطا ومشروب.</p>
+      </div>
+      <div class="price">6.75 د.أ</div>
+    </div>
+
+  </section>
+
+
+  <section class="section" id="sides">
+
+    <div class="section-title">
+      <h2>🍟 الإضافات</h2>
+      <span>Side dishes</span>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
         <h3>بطاطا مقلية</h3>
-        <span class="price">1.50 د.أ</span>
+        <p>بطاطا ذهبية مقرمشة مع خلطة توابل خاصة.</p>
       </div>
-      <p>بطاطا مقرمشة متبلة.</p>
+      <div class="price">1.50 د.أ</div>
     </div>
-
-
-    <h2 class="section-title">🥤 المشروبات</h2>
 
     <div class="item">
-      <div class="item-top">
-        <h3>مشروب غازي</h3>
-        <span class="price">1.00 د.أ</span>
+      <div class="item-info">
+        <h3>Cheese Fries</h3>
+        <p>بطاطا مقرمشة مغطاة بصوص الجبنة.</p>
       </div>
-      <p>اختر مشروبك المفضل.</p>
+      <div class="price">2.25 د.أ</div>
     </div>
 
-  </main>
+  </section>
 
-  <footer>
-    Digital Menu by AVENIX ⚡
-  </footer>
+
+  <section class="section" id="drinks">
+
+    <div class="section-title">
+      <h2>🥤 المشروبات</h2>
+      <span>باردة</span>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <h3>مشروب غازي</h3>
+        <p>اختر مشروبك المفضل.</p>
+      </div>
+      <div class="price">1.00 د.أ</div>
+    </div>
+
+    <div class="item">
+      <div class="item-info">
+        <h3>مياه معدنية</h3>
+        <p>مياه باردة.</p>
+      </div>
+      <div class="price">0.50 د.أ</div>
+    </div>
+
+  </section>
+
+
+  <div class="info-box">
+    <h2>📍 معلومات المطعم</h2>
+
+    <div class="info-row">📍 إربد، الأردن</div>
+    <div class="info-row">🕐 يومياً: 12:00 ظهراً - 12:00 ليلاً</div>
+    <div class="info-row">📞 07X XXX XXXX</div>
+
+    <div class="buttons">
+      <a class="btn whatsapp" href="#">
+        💬 واتساب
+      </a>
+
+      <a class="btn instagram" href="#">
+        📸 Instagram
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Digital Menu powered by <strong>AVENIX</strong> ⚡
+  <br>
+  Demo Menu • الأسعار والمعلومات لأغراض العرض فقط
+</footer>
 
 </body>
 </html>
