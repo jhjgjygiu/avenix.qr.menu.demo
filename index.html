@@ -3,10 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#05080c">
 
 <title>NOVA BURGER | Digital Menu</title>
 
 <style>
+:root{
+  --bg:#05080c;
+  --card:#0d131a;
+  --card2:#111923;
+  --line:#1d2a37;
+  --blue:#12a8ff;
+  --blue2:#0877ff;
+  --text:#ffffff;
+  --muted:#93a4b5;
+  --orange:#ff8a00;
+  --green:#25d366;
+}
+
 *{
   box-sizing:border-box;
   margin:0;
@@ -15,235 +29,641 @@
 }
 
 body{
-  font-family:Arial,sans-serif;
-  background:#090b0f;
-  color:#fff;
+  font-family:Arial, Tahoma, sans-serif;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(0,132,255,.15),transparent 30%),
+    var(--bg);
+  color:var(--text);
   line-height:1.6;
+  overflow-x:hidden;
 }
 
+img{
+  width:100%;
+  display:block;
+}
+
+a{
+  color:inherit;
+}
+
+button,input{
+  font:inherit;
+}
+
+/* HERO */
+
 .hero{
-  min-height:320px;
-  padding:55px 20px 35px;
-  text-align:center;
+  position:relative;
+  min-height:560px;
+  display:flex;
+  align-items:flex-end;
+  overflow:hidden;
+  background:#030507;
+}
+
+.hero-bg{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center;
+  filter:brightness(.58) saturate(1.15);
+}
+
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
   background:
-    radial-gradient(circle at top,#123e72 0%,#0b1727 35%,#090b0f 70%);
+    linear-gradient(to top,#05080c 2%,rgba(5,8,12,.78) 30%,rgba(5,8,12,.15) 70%),
+    linear-gradient(to left,rgba(0,0,0,.1),rgba(0,0,0,.35));
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  width:min(1100px,100%);
+  margin:auto;
+  padding:50px 22px 48px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  margin-bottom:18px;
 }
 
 .logo{
-  width:82px;
-  height:82px;
-  margin:auto;
-  border-radius:22px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:38px;
-  font-weight:bold;
-  background:linear-gradient(135deg,#168bff,#00c2ff);
-  box-shadow:0 10px 35px rgba(22,139,255,.25);
+  width:70px;
+  height:70px;
+  flex:none;
+  display:grid;
+  place-items:center;
+  border-radius:21px;
+  font-size:33px;
+  font-weight:900;
+  background:linear-gradient(135deg,var(--blue2),#00d5ff);
+  box-shadow:0 0 45px rgba(0,166,255,.3);
+}
+
+.brand-small{
+  color:#9eacba;
+  font-size:12px;
+  letter-spacing:4px;
 }
 
 .hero h1{
-  margin-top:18px;
-  font-size:32px;
+  font-size:clamp(38px,8vw,72px);
+  line-height:1;
   letter-spacing:1px;
 }
 
-.hero p{
-  margin-top:7px;
-  color:#aab4c2;
+.hero h1 span{
+  color:var(--blue);
 }
 
-.status{
-  display:inline-block;
-  margin-top:15px;
-  padding:7px 14px;
+.hero-description{
+  max-width:520px;
+  margin-top:14px;
+  color:#d3dbe3;
+  font-size:17px;
+}
+
+.hero-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:20px;
+}
+
+.tag{
+  padding:8px 13px;
+  border:1px solid rgba(255,255,255,.14);
   border-radius:50px;
-  background:#10251b;
-  color:#5ee59b;
+  background:rgba(5,10,16,.68);
+  backdrop-filter:blur(8px);
   font-size:13px;
 }
 
-.categories{
+.open{
+  color:#62eca2;
+}
+
+/* NAV */
+
+.categories-wrap{
   position:sticky;
   top:0;
-  z-index:10;
+  z-index:50;
+  background:rgba(5,8,12,.92);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--line);
+}
+
+.categories{
+  max-width:1100px;
+  margin:auto;
   display:flex;
   gap:9px;
   overflow-x:auto;
-  padding:14px 16px;
-  background:rgba(9,11,15,.95);
-  border-bottom:1px solid #1d222b;
+  padding:13px 16px;
+  scrollbar-width:none;
+}
+
+.categories::-webkit-scrollbar{
+  display:none;
 }
 
 .categories a{
   flex:none;
   text-decoration:none;
-  color:#d7dce3;
-  background:#151922;
-  border:1px solid #242b36;
-  padding:9px 15px;
+  color:#d5dee7;
+  background:#0d141c;
+  border:1px solid #1d2b38;
+  padding:10px 17px;
   border-radius:50px;
   font-size:14px;
+  transition:.2s;
 }
 
 .categories a:hover{
-  background:#168bff;
-  color:white;
+  color:#fff;
+  background:var(--blue2);
+  border-color:var(--blue);
 }
+
+/* MAIN */
 
 .container{
-  max-width:760px;
+  width:min(1100px,100%);
   margin:auto;
-  padding:12px 17px 45px;
+  padding:25px 17px 60px;
 }
 
+/* OFFER */
+
 .offer{
-  margin:18px 0 30px;
-  padding:20px;
-  border-radius:20px;
-  background:linear-gradient(135deg,#126bd1,#00a9ff);
-  box-shadow:0 10px 30px rgba(0,132,255,.15);
+  position:relative;
+  overflow:hidden;
+  display:grid;
+  grid-template-columns:1.5fr .7fr;
+  align-items:center;
+  margin:5px 0 40px;
+  padding:25px;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(0,210,255,.25),transparent 30%),
+    linear-gradient(135deg,#073466,#087eff);
+  box-shadow:0 15px 50px rgba(0,119,255,.17);
+}
+
+.offer::after{
+  content:"🔥";
+  position:absolute;
+  left:20px;
+  top:-15px;
+  font-size:100px;
+  opacity:.09;
+  transform:rotate(-15deg);
 }
 
 .offer small{
-  opacity:.8;
+  color:#bfe8ff;
 }
 
 .offer h2{
-  margin:4px 0;
-  font-size:21px;
+  font-size:27px;
+  margin:2px 0;
 }
 
+.offer-price{
+  text-align:left;
+  font-size:31px;
+  font-weight:900;
+}
+
+.offer-price span{
+  display:block;
+  font-size:12px;
+  color:#d6eeff;
+  font-weight:normal;
+}
+
+/* SEARCH */
+
+.search-box{
+  position:relative;
+  margin-bottom:38px;
+}
+
+.search-box input{
+  width:100%;
+  padding:16px 48px 16px 17px;
+  color:#fff;
+  background:#0d131a;
+  border:1px solid #1d2a37;
+  border-radius:16px;
+  outline:none;
+  transition:.2s;
+}
+
+.search-box input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 3px rgba(18,168,255,.08);
+}
+
+.search-icon{
+  position:absolute;
+  right:17px;
+  top:50%;
+  transform:translateY(-50%);
+  opacity:.6;
+}
+
+/* SECTIONS */
+
 .section{
-  scroll-margin-top:85px;
-  margin-top:34px;
+  scroll-margin-top:90px;
+  margin-top:42px;
+}
+
+.section-heading{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:17px;
 }
 
 .section-title{
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  margin-bottom:14px;
+  gap:11px;
 }
 
-.section-title h2{
-  font-size:23px;
+.section-icon{
+  font-size:29px;
 }
 
-.section-title span{
-  color:#168bff;
+.section-heading h2{
+  font-size:27px;
+  line-height:1.1;
+}
+
+.section-heading small{
+  display:block;
+  margin-top:5px;
+  color:#657789;
+  letter-spacing:3px;
+  font-size:10px;
+}
+
+.section-note{
+  color:var(--blue);
   font-size:13px;
 }
 
-.item{
-  display:flex;
-  justify-content:space-between;
+/* PRODUCTS */
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
   gap:15px;
-  padding:18px;
-  margin-bottom:12px;
-  background:#13171e;
-  border:1px solid #202630;
-  border-radius:18px;
-  transition:.2s;
 }
 
-.item:hover{
-  transform:translateY(-2px);
-  border-color:#168bff;
+.product{
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  background:linear-gradient(180deg,#101820,#0b1117);
+  border:1px solid #1d2a37;
+  transition:.25s;
 }
 
-.item-info{
-  flex:1;
+.product:hover{
+  transform:translateY(-5px);
+  border-color:#245170;
+  box-shadow:0 18px 45px rgba(0,0,0,.3);
 }
 
-.item h3{
-  font-size:18px;
-  margin-bottom:5px;
+.product-image{
+  position:relative;
+  height:210px;
+  overflow:hidden;
+  background:#080c10;
 }
 
-.item p{
-  color:#929dab;
-  font-size:14px;
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:.35s;
+}
+
+.product:hover .product-image img{
+  transform:scale(1.045);
+}
+
+.badge{
+  position:absolute;
+  top:12px;
+  right:12px;
+  z-index:2;
+  padding:6px 10px;
+  border-radius:8px;
+  color:#161000;
+  background:#ffc83d;
+  font-size:11px;
+  font-weight:bold;
+  box-shadow:0 5px 15px rgba(0,0,0,.3);
+}
+
+.new{
+  color:white;
+  background:#7b4dff;
+}
+
+.spicy{
+  color:white;
+  background:#e6452d;
+}
+
+.product-content{
+  padding:16px;
+}
+
+.product h3{
+  font-size:19px;
+  margin-bottom:4px;
+}
+
+.product p{
+  min-height:45px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.product-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-top:14px;
 }
 
 .price{
-  color:#23a7ff;
-  font-weight:bold;
-  white-space:nowrap;
-  font-size:16px;
+  color:var(--blue);
+  font-size:20px;
+  font-weight:900;
 }
 
-.popular{
-  display:inline-block;
-  margin-top:8px;
-  padding:3px 9px;
-  border-radius:20px;
-  background:#302710;
-  color:#ffc94a;
+.price small{
   font-size:11px;
+  color:#6f8498;
 }
 
-.info-box{
-  margin-top:38px;
-  padding:22px;
-  border-radius:20px;
-  background:#11151b;
-  border:1px solid #202630;
+.plus{
+  width:35px;
+  height:35px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  border:2px solid var(--blue);
+  color:var(--blue);
+  background:transparent;
+  font-size:22px;
+  cursor:pointer;
+  transition:.2s;
 }
 
-.info-box h2{
-  margin-bottom:13px;
+.plus:hover{
+  color:#00101a;
+  background:var(--blue);
 }
 
-.info-row{
-  margin:8px 0;
-  color:#aeb6c1;
+/* INFO */
+
+.restaurant-info{
+  margin-top:55px;
+  padding:27px;
+  border:1px solid #1d2a37;
+  border-radius:25px;
+  background:
+    radial-gradient(circle at 100% 0,rgba(18,168,255,.08),transparent 30%),
+    #0b1117;
 }
 
-.buttons{
+.restaurant-info h2{
+  margin-bottom:21px;
+  font-size:24px;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.info-card{
+  padding:16px;
+  border-radius:15px;
+  background:#101820;
+  border:1px solid #182531;
+}
+
+.info-card span{
+  display:block;
+  color:#718497;
+  font-size:12px;
+  margin-bottom:3px;
+}
+
+.info-card strong{
+  font-size:14px;
+}
+
+.contact-buttons{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:10px;
+  gap:12px;
   margin-top:18px;
 }
 
 .btn{
   text-align:center;
   text-decoration:none;
-  padding:12px;
-  border-radius:12px;
+  padding:14px 18px;
+  border-radius:13px;
   font-weight:bold;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
 }
 
 .whatsapp{
-  background:#25D366;
-  color:#07140c;
+  color:#04140a;
+  background:var(--green);
 }
 
 .instagram{
-  background:#168bff;
   color:white;
+  background:linear-gradient(135deg,#087eff,#00b7ff);
 }
 
-footer{
+/* DEMO NOTICE */
+
+.demo-notice{
+  margin-top:22px;
+  padding:14px 16px;
   text-align:center;
-  padding:30px 15px 40px;
-  color:#687382;
-  font-size:13px;
+  border:1px dashed #273645;
+  border-radius:14px;
+  color:#718497;
+  font-size:12px;
+}
+
+/* FOOTER */
+
+footer{
+  padding:34px 16px 45px;
+  text-align:center;
+  border-top:1px solid #121b24;
+  color:#637485;
+  font-size:12px;
 }
 
 footer strong{
-  color:#168bff;
+  color:var(--blue);
 }
 
-@media(max-width:500px){
-  .hero h1{
+.avenix{
+  margin-top:7px;
+  letter-spacing:1px;
+}
+
+/* TOAST */
+
+.toast{
+  position:fixed;
+  bottom:25px;
+  left:50%;
+  z-index:100;
+  transform:translate(-50%,120px);
+  padding:12px 20px;
+  border:1px solid #1d3445;
+  border-radius:50px;
+  color:#fff;
+  background:#101b24;
+  box-shadow:0 10px 40px rgba(0,0,0,.45);
+  font-size:13px;
+  transition:.35s;
+}
+
+.toast.show{
+  transform:translate(-50%,0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:850px){
+  .products{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero{
+    min-height:500px;
+  }
+}
+
+@media(max-width:560px){
+  .hero{
+    min-height:470px;
+  }
+
+  .hero-content{
+    padding:35px 18px 35px;
+  }
+
+  .logo{
+    width:58px;
+    height:58px;
+    border-radius:17px;
     font-size:28px;
   }
 
-  .buttons{
+  .hero-description{
+    font-size:14px;
+  }
+
+  .offer{
     grid-template-columns:1fr;
+  }
+
+  .offer-price{
+    text-align:right;
+    margin-top:12px;
+  }
+
+  .products{
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+  }
+
+  .product{
+    border-radius:15px;
+  }
+
+  .product-image{
+    height:145px;
+  }
+
+  .product-content{
+    padding:12px;
+  }
+
+  .product h3{
+    font-size:15px;
+  }
+
+  .product p{
+    font-size:11px;
+    min-height:51px;
+  }
+
+  .price{
+    font-size:17px;
+  }
+
+  .plus{
+    width:30px;
+    height:30px;
+    font-size:18px;
+  }
+
+  .section-heading h2{
+    font-size:22px;
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .contact-buttons{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:360px){
+  .products{
+    grid-template-columns:1fr;
+  }
+
+  .product-image{
+    height:210px;
   }
 }
 </style>
@@ -251,170 +671,582 @@ footer strong{
 
 <body>
 
+<!-- HERO -->
 <header class="hero">
-  <div class="logo">N</div>
 
-  <h1>NOVA BURGER</h1>
+  <img
+    class="hero-bg"
+    src="double-smash.jpg"
+    alt="NOVA Burger"
+  >
 
-  <p>برغر طازج • نكهة مختلفة 🍔</p>
+  <div class="hero-content">
 
-  <div class="status">● مفتوح الآن</div>
+    <div class="brand">
+      <div class="logo">N</div>
+
+      <div>
+        <div class="brand-small">DIGITAL MENU</div>
+        <strong>NOVA BURGER</strong>
+      </div>
+    </div>
+
+    <h1>NOVA <span>BURGER</span></h1>
+
+    <p class="hero-description">
+      برغر طازج، مكونات مختارة ونكهة بتخليك ترجع مرة ثانية. 🍔🔥
+    </p>
+
+    <div class="hero-tags">
+      <div class="tag">🥩 مكونات طازجة</div>
+      <div class="tag">🔥 وصفات خاصة</div>
+      <div class="tag">⭐ جودة عالية</div>
+      <div class="tag open">● مفتوح الآن</div>
+    </div>
+
+  </div>
 </header>
 
-<nav class="categories">
-  <a href="#burgers">🍔 البرغر</a>
-  <a href="#meals">🔥 الوجبات</a>
-  <a href="#sides">🍟 الإضافات</a>
-  <a href="#drinks">🥤 المشروبات</a>
-</nav>
+
+<!-- CATEGORIES -->
+<div class="categories-wrap">
+  <nav class="categories">
+    <a href="#burgers">🍔 البرغر</a>
+    <a href="#meals">🔥 الوجبات</a>
+    <a href="#sides">🍟 الإضافات</a>
+    <a href="#drinks">🥤 المشروبات</a>
+    <a href="#info">📍 معلوماتنا</a>
+  </nav>
+</div>
+
 
 <main class="container">
 
-  <div class="offer">
-    <small>عرض اليوم 🔥</small>
-    <h2>NOVA Combo</h2>
-    <p>برغر + بطاطا + مشروب بـ 5.50 د.أ فقط</p>
+<!-- OFFER -->
+<div class="offer">
+  <div>
+    <small>🔥 عرض NOVA اليوم</small>
+    <h2>NOVA COMBO</h2>
+    <p>برغر NOVA Classic + بطاطا مقرمشة + مشروب بارد</p>
+  </div>
+
+  <div class="offer-price">
+    5.50 د.أ
+    <span>عرض لفترة محدودة</span>
+  </div>
+</div>
+
+
+<!-- SEARCH -->
+<div class="search-box">
+  <span class="search-icon">🔎</span>
+
+  <input
+    id="searchInput"
+    type="text"
+    placeholder="ابحث في المنيو..."
+    onkeyup="searchMenu()"
+  >
+</div>
+
+
+<!-- BURGERS -->
+<section class="section" id="burgers">
+
+  <div class="section-heading">
+    <div class="section-title">
+      <div class="section-icon">🍔</div>
+
+      <div>
+        <h2>البرغر</h2>
+        <small>BURGERS</small>
+      </div>
+    </div>
+
+    <div class="section-note">🔥 الأكثر طلباً</div>
   </div>
 
 
-  <section class="section" id="burgers">
+  <div class="products">
 
-    <div class="section-title">
-      <h2>🍔 البرغر</h2>
-      <span>الأكثر طلباً</span>
-    </div>
+    <article class="product searchable">
+      <div class="product-image">
+        <span class="badge">👑 الأكثر مبيعاً</span>
+        <img src="nova-classic.jpg" alt="NOVA Classic" loading="lazy">
+      </div>
 
-    <div class="item">
-      <div class="item-info">
+      <div class="product-content">
         <h3>NOVA Classic</h3>
-        <p>لحم مشوي، جبنة، خس، مخلل وصوص NOVA الخاص.</p>
-        <span class="popular">⭐ الأكثر مبيعاً</span>
-      </div>
-      <div class="price">3.50 د.أ</div>
-    </div>
+        <p>لحم مشوي، جبنة، خس، طماطم، مخلل وصوص NOVA الخاص.</p>
 
-    <div class="item">
-      <div class="item-info">
+        <div class="product-bottom">
+          <div class="price">3.50 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('NOVA Classic')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <span class="badge new">DOUBLE</span>
+        <img src="double-smash.jpg" alt="Double Smash" loading="lazy">
+      </div>
+
+      <div class="product-content">
         <h3>Double Smash</h3>
-        <p>قطعتان لحم، جبنة مضاعفة، بصل وصوص خاص.</p>
-      </div>
-      <div class="price">5.00 د.أ</div>
-    </div>
+        <p>قطعتان لحم سماش، جبنة مضاعفة، بصل وصوصنا الخاص.</p>
 
-    <div class="item">
-      <div class="item-info">
+        <div class="product-bottom">
+          <div class="price">5.00 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Double Smash')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <span class="badge spicy">🌶 حار</span>
+        <img src="spicy-chicken.jpg" alt="Spicy Chicken" loading="lazy">
+      </div>
+
+      <div class="product-content">
         <h3>Spicy Chicken</h3>
-        <p>دجاج مقرمش حار، خس ومخلل مع صوص سبايسي.</p>
+        <p>دجاج مقرمش حار، خس، طماطم، مخلل وصوص سبايسي.</p>
+
+        <div class="product-bottom">
+          <div class="price">3.75 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Spicy Chicken')">+</button>
+        </div>
       </div>
-      <div class="price">3.75 د.أ</div>
-    </div>
-
-  </section>
+    </article>
 
 
-  <section class="section" id="meals">
-
-    <div class="section-title">
-      <h2>🔥 الوجبات</h2>
-      <span>وفر أكثر</span>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <h3>Classic Meal</h3>
-        <p>NOVA Classic مع بطاطا ومشروب.</p>
+    <article class="product searchable">
+      <div class="product-image">
+        <span class="badge new">NEW</span>
+        <img src="mushroom-burger.jpg" alt="Mushroom Burger" loading="lazy">
       </div>
-      <div class="price">5.25 د.أ</div>
-    </div>
 
-    <div class="item">
-      <div class="item-info">
-        <h3>Double Meal</h3>
-        <p>Double Smash مع بطاطا ومشروب.</p>
+      <div class="product-content">
+        <h3>Mushroom Burger</h3>
+        <p>لحم مشوي، فطر طازج، جبنة كريمية وصوص خاص.</p>
+
+        <div class="product-bottom">
+          <div class="price">4.25 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Mushroom Burger')">+</button>
+        </div>
       </div>
-      <div class="price">6.75 د.أ</div>
-    </div>
+    </article>
 
-  </section>
-
-
-  <section class="section" id="sides">
-
-    <div class="section-title">
-      <h2>🍟 الإضافات</h2>
-      <span>Side dishes</span>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <h3>بطاطا مقلية</h3>
-        <p>بطاطا ذهبية مقرمشة مع خلطة توابل خاصة.</p>
-      </div>
-      <div class="price">1.50 د.أ</div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <h3>Cheese Fries</h3>
-        <p>بطاطا مقرمشة مغطاة بصوص الجبنة.</p>
-      </div>
-      <div class="price">2.25 د.أ</div>
-    </div>
-
-  </section>
-
-
-  <section class="section" id="drinks">
-
-    <div class="section-title">
-      <h2>🥤 المشروبات</h2>
-      <span>باردة</span>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <h3>مشروب غازي</h3>
-        <p>اختر مشروبك المفضل.</p>
-      </div>
-      <div class="price">1.00 د.أ</div>
-    </div>
-
-    <div class="item">
-      <div class="item-info">
-        <h3>مياه معدنية</h3>
-        <p>مياه باردة.</p>
-      </div>
-      <div class="price">0.50 د.أ</div>
-    </div>
-
-  </section>
-
-
-  <div class="info-box">
-    <h2>📍 معلومات المطعم</h2>
-
-    <div class="info-row">📍 إربد، الأردن</div>
-    <div class="info-row">🕐 يومياً: 12:00 ظهراً - 12:00 ليلاً</div>
-    <div class="info-row">📞 07X XXX XXXX</div>
-
-    <div class="buttons">
-      <a class="btn whatsapp" href="#">
-        💬 واتساب
-      </a>
-
-      <a class="btn instagram" href="#">
-        📸 Instagram
-      </a>
-    </div>
   </div>
+</section>
+
+
+<!-- MEALS -->
+<section class="section" id="meals">
+
+  <div class="section-heading">
+    <div class="section-title">
+      <div class="section-icon">🔥</div>
+
+      <div>
+        <h2>الوجبات</h2>
+        <small>MEALS</small>
+      </div>
+    </div>
+
+    <div class="section-note">⭐ وفر أكثر</div>
+  </div>
+
+
+  <div class="products">
+
+    <article class="product searchable">
+      <div class="product-image">
+        <img src="classic-meal.jpg" alt="Classic Meal" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>Classic Meal</h3>
+        <p>NOVA Classic مع بطاطا مقرمشة ومشروب بارد.</p>
+
+        <div class="product-bottom">
+          <div class="price">5.25 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Classic Meal')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <span class="badge">🔥 محبوب</span>
+        <img src="double-meal.jpg" alt="Double Meal" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>Double Meal</h3>
+        <p>Double Smash مع بطاطا مقرمشة ومشروب بارد.</p>
+
+        <div class="product-bottom">
+          <div class="price">6.75 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Double Meal')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <img src="spicy-meal.jpg" alt="Spicy Meal" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>Spicy Meal</h3>
+        <p>Spicy Chicken مع بطاطا مقرمشة ومشروب بارد.</p>
+
+        <div class="product-bottom">
+          <div class="price">5.75 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Spicy Meal')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <img src="mushroom-meal.jpg" alt="Mushroom Meal" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>Mushroom Meal</h3>
+        <p>Mushroom Burger مع بطاطا مقرمشة ومشروب بارد.</p>
+
+        <div class="product-bottom">
+          <div class="price">6.25 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Mushroom Meal')">+</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- SIDES -->
+<section class="section" id="sides">
+
+  <div class="section-heading">
+    <div class="section-title">
+      <div class="section-icon">🍟</div>
+
+      <div>
+        <h2>الإضافات</h2>
+        <small>SIDES</small>
+      </div>
+    </div>
+
+    <div class="section-note">👌 تكمل وجبتك</div>
+  </div>
+
+
+  <div class="products">
+
+    <article class="product searchable">
+      <div class="product-image">
+        <img src="french-fries.jpg" alt="French Fries" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>بطاطا مقلية</h3>
+        <p>بطاطا ذهبية مقرمشة مع خلطة توابل NOVA.</p>
+
+        <div class="product-bottom">
+          <div class="price">1.50 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('بطاطا مقلية')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <img src="cheese-fries.jpg" alt="Cheese Fries" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>Cheese Fries</h3>
+        <p>بطاطا مقرمشة مغطاة بصوص الجبنة الكريمي.</p>
+
+        <div class="product-bottom">
+          <div class="price">2.25 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Cheese Fries')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <span class="badge new">SPECIAL</span>
+        <img src="loaded-fries.jpg" alt="Loaded Fries" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>Loaded Fries</h3>
+        <p>بطاطا مع جبنة، إضافات وصوص NOVA المميز.</p>
+
+        <div class="product-bottom">
+          <div class="price">2.75 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Loaded Fries')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <img src="onion-rings.jpg" alt="Onion Rings" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>Onion Rings</h3>
+        <p>حلقات بصل ذهبية ومقرمشة تقدم مع صوص.</p>
+
+        <div class="product-bottom">
+          <div class="price">2.00 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Onion Rings')">+</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- DRINKS -->
+<section class="section" id="drinks">
+
+  <div class="section-heading">
+    <div class="section-title">
+      <div class="section-icon">🥤</div>
+
+      <div>
+        <h2>المشروبات</h2>
+        <small>DRINKS</small>
+      </div>
+    </div>
+
+    <div class="section-note">❄️ باردة ومنعشة</div>
+  </div>
+
+
+  <div class="products">
+
+    <article class="product searchable">
+      <div class="product-image">
+        <img src="soft-drink.jpg" alt="Soft Drink" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>مشروب غازي</h3>
+        <p>اختر مشروبك الغازي المفضل.</p>
+
+        <div class="product-bottom">
+          <div class="price">1.00 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('مشروب غازي')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <img src="orange-juice.jpg" alt="Orange Juice" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>عصير برتقال</h3>
+        <p>عصير برتقال منعش يقدم بارداً.</p>
+
+        <div class="product-bottom">
+          <div class="price">2.00 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('عصير برتقال')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <span class="badge">⭐ مميز</span>
+        <img src="milkshake.jpg" alt="Milkshake" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>Milkshake</h3>
+        <p>ميلك شيك كريمي بنكهات متعددة.</p>
+
+        <div class="product-bottom">
+          <div class="price">2.50 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('Milkshake')">+</button>
+        </div>
+      </div>
+    </article>
+
+
+    <article class="product searchable">
+      <div class="product-image">
+        <img src="water.jpg" alt="Water" loading="lazy">
+      </div>
+
+      <div class="product-content">
+        <h3>مياه معدنية</h3>
+        <p>مياه معدنية باردة.</p>
+
+        <div class="product-bottom">
+          <div class="price">0.50 <small>د.أ</small></div>
+          <button class="plus" onclick="showToast('مياه معدنية')">+</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+
+<!-- RESTAURANT INFO -->
+<section class="restaurant-info" id="info">
+
+  <h2>📍 معلومات NOVA BURGER</h2>
+
+  <div class="info-grid">
+
+    <div class="info-card">
+      <span>الموقع</span>
+      <strong>📍 إربد، الأردن</strong>
+    </div>
+
+    <div class="info-card">
+      <span>ساعات العمل</span>
+      <strong>🕐 يومياً 12:00 ظهراً - 12:00 ليلاً</strong>
+    </div>
+
+    <div class="info-card">
+      <span>للتواصل</span>
+      <strong>📞 07X XXX XXXX</strong>
+    </div>
+
+  </div>
+
+
+  <div class="contact-buttons">
+
+    <a class="btn whatsapp" href="#" onclick="demoButton(event)">
+      💬 تواصل عبر WhatsApp
+    </a>
+
+    <a class="btn instagram" href="#" onclick="demoButton(event)">
+      📸 Instagram
+    </a>
+
+  </div>
+
+
+  <div class="demo-notice">
+    NOVA BURGER مشروع تجريبي لعرض تصميم الـ Digital Menu.
+    الأسماء والأسعار ومعلومات التواصل لأغراض العرض فقط.
+  </div>
+
+</section>
 
 </main>
 
+
 <footer>
-  Digital Menu powered by <strong>AVENIX</strong> ⚡
-  <br>
-  Demo Menu • الأسعار والمعلومات لأغراض العرض فقط
+  <div>NOVA BURGER • DIGITAL MENU</div>
+
+  <div class="avenix">
+    Powered by <strong>AVENIX Digital Solutions</strong> ⚡
+  </div>
 </footer>
+
+
+<div class="toast" id="toast">
+  هذا زر تجريبي في نسخة العرض ✨
+</div>
+
+
+<script>
+
+function searchMenu(){
+
+  const input =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+  const products =
+    document.querySelectorAll(".searchable");
+
+  products.forEach(product => {
+
+    const text =
+      product.innerText.toLowerCase();
+
+    if(text.includes(input)){
+      product.style.display = "";
+    }else{
+      product.style.display = "none";
+    }
+
+  });
+}
+
+
+let toastTimer;
+
+function showToast(item){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    "✨ " + item + " — ميزة الطلب قابلة للإضافة";
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  },2200);
+}
+
+
+function demoButton(event){
+
+  event.preventDefault();
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent =
+    "هذا زر تجريبي — يتم ربط حساب المطعم الحقيقي عند التنفيذ 🔗";
+
+  toast.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  },2500);
+}
+
+</script>
 
 </body>
 </html>
